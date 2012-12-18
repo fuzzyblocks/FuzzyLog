@@ -1,0 +1,5 @@
+name: HoeLogger
+main: be.darnell.mc.HoeLogger.HoeLogger
+version: 12w25a
+author: cedeel
+description: General logger for sane people
