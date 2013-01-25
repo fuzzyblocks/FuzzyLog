@@ -24,10 +24,10 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package be.darnell.mc.HoeLogger;
+package be.darnell.mc.FuzzyLog;
 
-import be.darnell.mc.HoeLogger.data.DataStore;
-import be.darnell.mc.HoeLogger.data.FileDataStore;
+import be.darnell.mc.FuzzyLog.data.DataStore;
+import be.darnell.mc.FuzzyLog.data.FileDataStore;
 import java.io.File;
 import java.util.Calendar;
 import org.bukkit.ChatColor;

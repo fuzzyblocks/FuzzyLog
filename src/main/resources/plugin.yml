@@ -1,5 +1,5 @@
-name: HoeLogger
-main: be.darnell.mc.HoeLogger.HoeLogger
+name: FuzzyLog
+main: be.darnell.mc.FuzzyLog.FuzzyLog
 version: 12w25a
 author: cedeel
 description: General logger for sane people

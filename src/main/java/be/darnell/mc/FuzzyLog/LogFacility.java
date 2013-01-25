@@ -24,31 +24,25 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package be.darnell.mc.HoeLogger;
-
-import java.util.Calendar;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
+package be.darnell.mc.FuzzyLog;
 
 /**
  *
  * @author cedeel
  */
-public class ChatLogFacility extends LogFacility{
+public abstract class LogFacility {
+  protected String name;
   
-  protected ChatLogFacility(String name) {
-    super(name);
+  protected LogFacility(String name) {
+    this.name = name;
   }
   
-  @Override
-  public void log(String message) {
-    String stamp = String.format("%1$tY-%1$tm-%1$td %1$tT", Calendar.getInstance());
-    Bukkit.getServer().broadcastMessage(
-            ChatColor.YELLOW + "LOG (" + this.name + "): " +
-            ChatColor.AQUA + stamp +
-            ChatColor.WHITE + " " + message);
-  }
+  public abstract void log(String message);
+  
+  public abstract void close();
   
   @Override
-  public void close() {}
+  public String toString() {
+    return name;
+  }
 }

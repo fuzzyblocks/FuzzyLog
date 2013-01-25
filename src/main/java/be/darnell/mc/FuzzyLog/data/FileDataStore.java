@@ -24,9 +24,10 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package be.darnell.mc.HoeLogger.data;
+package be.darnell.mc.FuzzyLog.data;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Calendar;
 
 /**
@@ -80,16 +81,20 @@ public class FileDataStore implements DataStore {
       throw new RuntimeException(e.getMessage());
     }
   }
-  
+
   private void updateFile(String f) {
     String today = String.format("%1$tY-%1$tm-%1$td", Calendar.getInstance());
     File file = new File(f + today + ".log");
-    if(_logfile.equals(file)) return;
-    
+    try {
+      if (_logfile.getCanonicalFile().equals(file.getCanonicalFile())) {
+        return;
+      }
+    } catch (IOException e) {
+      System.out.println("Cannot write to log files.");
+    }
     bw.close();
     bw = new BufferedDataFileWriter(file);
   }
-
 //  private void resetReader() {
 //    try {
 //      rdr = new BufferedReader(new FileReader(_logfile));

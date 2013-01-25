@@ -24,25 +24,78 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package be.darnell.mc.HoeLogger.data;
+package be.darnell.mc.FuzzyLog.data;
 
-/**
- * @author cedeel
- */
+import java.io.*;
 
-public interface DataStore {
-    
-    /**
-     * Add an entry to the log
-     * @param message The message to add.
-     * @return Whether the operation was successful
-     */
-    public boolean writeSingle(String message);
-    
-    /**
-     * Persists any changes to the log.
-     * @throws RuntimeException
-     */
-    public void persist() throws RuntimeException;
+public class BufferedDataFileWriter
+{
+	private File dataFile;
+	private String[] cache;
+	private int index;
+	private final int cacheSize = 15;
 
+	public BufferedDataFileWriter (File dF)
+	{
+		dataFile = dF;
+		cache = new String[cacheSize];
+		index = 0;
+	}
+
+	public void write (String s)
+	{
+		if (index >= cache.length)
+			flush();
+		cache[index] = s;
+		index++;
+//		System.out.println("Wrote: " + s);
+	}
+
+	/**
+   * Flushes the data in cache to disk.
+   */
+  private void flush ()
+	{
+		if (index > 0)
+		{
+			try
+			{
+				PrintWriter pw = new PrintWriter(new FileWriter(dataFile, true));
+				for (int i = 0; ((i < index) && (i < cache.length)); i++)
+				{
+					pw.println(cache[i]);
+				}
+//				System.out.println("Log: Flushed buffer.");
+				cache = new String[cacheSize];
+				index = 0;
+				pw.close();
+			}
+			catch (IOException e)
+			{
+				throw new RuntimeException ("Log: Error flushing buffer: " + e);
+			}
+		}
+	}
+
+	/**
+   * Erases the file.
+   */
+  private void erase ()
+	{
+		flush();
+		try
+		{
+			PrintWriter pw = new PrintWriter(new FileWriter(dataFile, false));
+			pw.close();
+		}
+		catch (IOException e)
+		{
+			throw new RuntimeException ("Log: Error erasing data: " + e);
+		}
+	}
+
+	public void close ()
+	{
+		flush();
+	}
 }

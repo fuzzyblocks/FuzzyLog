@@ -3,10 +3,10 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>be.darnell</groupId>
-    <artifactId>HoeLogger</artifactId>
+    <artifactId>FuzzyLog</artifactId>
     <packaging>jar</packaging>
     <version>1.1</version>
-    <name>HoeLogger</name>
+    <name>FuzzyLog</name>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.number>DEV</project.build.number>
@@ -19,9 +19,9 @@
         </repository>
     </repositories>
     <scm>
-        <developerConnection>scm:git:git@github.com:cedeel/HoeLogger.git</developerConnection>
-        <connection>scm:git:git://github.com/cedeel/HoeLogger.git</connection>
-        <url>https://github.com/cedeel/HoeLogger</url>
+        <developerConnection>scm:git:git@github.com:cedeel/FuzzyLog.git</developerConnection>
+        <connection>scm:git:git://github.com/cedeel/FuzzyLog.git</connection>
+        <url>https://github.com/cedeel/FuzzyLog</url>
     </scm>
     <profiles>
         <profile>
@@ -78,7 +78,7 @@
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>bukkit</artifactId>
-            <version>1.4.2-R0.2-SNAPSHOT</version>
+            <version>1.4.6-R0.4-SNAPSHOT</version>
             <type>jar</type>
         </dependency>
         <!-- End Bukkit -->
