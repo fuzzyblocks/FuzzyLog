@@ -38,6 +38,7 @@ import org.bukkit.plugin.java.JavaPlugin;
  *
  * @author cedeel
  */
+@SuppressWarnings("UnusedDeclaration")
 public class FuzzyLog extends JavaPlugin {
   
   public static final Logger logger = Logger.getLogger("Minecraft");
@@ -108,7 +109,7 @@ public class FuzzyLog extends JavaPlugin {
     if (logFacilities.containsKey(name)) {
       logFacilities.get(name).close();
       logFacilities.remove(name);
-      logger.info("Removed log facility");
+      logger.info("Removed log facility " + name);
       return true;
     }
     return false;

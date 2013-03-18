@@ -30,6 +30,7 @@ package be.darnell.mc.FuzzyLog;
  *
  * @author cedeel
  */
+@SuppressWarnings("UnusedDeclaration")
 public abstract class LogFacility {
   protected String name;
   
