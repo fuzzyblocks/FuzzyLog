@@ -1,5 +1,5 @@
 name: FuzzyLog
 main: be.darnell.mc.FuzzyLog.FuzzyLog
-version: 12w25a
+version: maven-version-number
 author: cedeel
 description: General logger for sane people
