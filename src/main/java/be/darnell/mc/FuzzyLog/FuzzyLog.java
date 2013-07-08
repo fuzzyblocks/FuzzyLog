@@ -30,7 +30,6 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -41,7 +40,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 @SuppressWarnings("UnusedDeclaration")
 public class FuzzyLog extends JavaPlugin {
   
-  public static final Logger logger = Logger.getLogger("Minecraft");
   private static Map<String, LogFacility> logFacilities;
   
   @Override
@@ -51,7 +49,7 @@ public class FuzzyLog extends JavaPlugin {
       try {
         logDir.mkdirs();
       } catch (Exception e) {
-        logger.log(Level.WARNING, "Could not create log file dir");
+        getLogger().log(Level.WARNING, "Could not create log file dir");
       }
     }
   }
@@ -59,7 +57,7 @@ public class FuzzyLog extends JavaPlugin {
   @Override
   public void onEnable() {
     PluginDescriptionFile pdf = this.getDescription();
-    logger.log(Level.INFO, pdf.getName() + " starting up.");
+    getLogger().log(Level.INFO, pdf.getName() + " starting up.");
     
     logFacilities = new HashMap<String, LogFacility>();
   }
@@ -78,7 +76,6 @@ public class FuzzyLog extends JavaPlugin {
    * @return The logging facility in question.
    */
   public static LogFacility getFacility(String name) {
-    logger.info("Sent logging facility \"" + name + "\"");
     return logFacilities.get(name);
   }
 
@@ -92,10 +89,9 @@ public class FuzzyLog extends JavaPlugin {
     if (!logFacilities.containsKey(name)) {
       logFacilities.put(name, new FileLogFacility(name, new File("Logs")));
       // logFacilities.put(name, new ChatLogFacility(name));
-      logger.info("Added log facility");
       return true;
     }
-    logger.info("addFacility(" + name + ") failed. Log facility already exists");
+    // logger.info("addFacility(" + name + ") failed. Log facility already exists");
     return false;
   }
 
@@ -109,7 +105,7 @@ public class FuzzyLog extends JavaPlugin {
     if (logFacilities.containsKey(name)) {
       logFacilities.get(name).close();
       logFacilities.remove(name);
-      logger.info("Removed log facility " + name);
+      // logger.info("Removed log facility " + name);
       return true;
     }
     return false;
