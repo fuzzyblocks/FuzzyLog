@@ -1,5 +1,5 @@
-name: FuzzyLog
+name: ${name}
 main: be.darnell.mc.FuzzyLog.FuzzyLog
-version: maven-version-number
+version: ${version}
 author: cedeel
 description: General logger for sane people
